@@ -5,9 +5,12 @@ import HomeScreen from './src/screens/HomeScreen';
 import AnotherScreen from './src/screens/AnotherScreen';
 import LogoTitle from './src/components/LogoTitle';
 import ModalScreen from './src/screens/ModalScreen';
+import SigninScreen from './src/screens/SigninScreen';
+import SignupScreen from './src/screens/SignupScreen';
 
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
+const AuthStack = createStackNavigator();
 
 const screenOptions = {
   headerStyle: {backgroundColor: '#fd3fa8'},
@@ -17,6 +20,15 @@ const screenOptions = {
     letterSpacing: 10,
   },
 };
+
+function AuthStackScreen() {
+  return (
+    <AuthStack.Navigator>
+      <AuthStack.Screen name="Signin" component={SigninScreen} />
+      <AuthStack.Screen name="Signup" component={SignupScreen} />
+    </AuthStack.Navigator>
+  );
+}
 
 function MainStackScreen() {
   return (
@@ -40,6 +52,11 @@ function MainStackScreen() {
 function RootStackScreen() {
   return (
     <RootStack.Navigator mode="modal">
+      <RootStack.Screen
+        name="Auth"
+        component={AuthStackScreen}
+        options={{headerShown: false}}
+      />
       <RootStack.Screen
         name="Main"
         component={MainStackScreen}
