@@ -1,8 +1,17 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useLayoutEffect} from 'react';
 import {View, Text, StyleSheet, Button, Image} from 'react-native';
 
 function HomeScreen({navigation, route}) {
-  console.log(route);
+  const [count, setCount] = useState(0);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button onPress={() => setCount(c => c + 1)} title="Update count" />
+      ),
+    });
+  }, [navigation]);
+
   useEffect(() => {
     if (route.params?.title) {
       console.log('received params');
@@ -12,6 +21,7 @@ function HomeScreen({navigation, route}) {
   return (
     <View>
       <Text>HomeScreen</Text>
+      <Text>{count}</Text>
       <Button
         title="To another screen"
         onPress={() =>
