@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from './src/screens/HomeScreen';
 import AnotherScreen from './src/screens/AnotherScreen';
 import LogoTitle from './src/components/LogoTitle';
@@ -9,12 +10,16 @@ import ModalScreen from './src/screens/ModalScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
+import AnotherSecondScreen from './src/screens/AnotherSecondScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 
 const Tabs = createBottomTabNavigator();
 const RootStack = createStackNavigator();
 const AuthStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const AnotherStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const screenOptions = {
   headerStyle: {backgroundColor: '#fd3fa8'},
@@ -48,7 +53,16 @@ function AnotherStackScreen() {
   return (
     <AnotherStack.Navigator>
       <AnotherStack.Screen name="Another" component={AnotherScreen} />
+      <AnotherStack.Screen name="Another2" component={AnotherSecondScreen} />
     </AnotherStack.Navigator>
+  );
+}
+
+function ProfileStackScreen() {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen name="Profile" component={ProfileScreen} />
+    </ProfileStack.Navigator>
   );
 }
 
@@ -69,12 +83,21 @@ function AuthStackScreen() {
   );
 }
 
-function MainStackScreen() {
+function TabsNavigator() {
   return (
     <Tabs.Navigator>
       <Tabs.Screen name="Home" component={HomeStackScreen} />
       <Tabs.Screen name="Another" component={AnotherStackScreen} />
     </Tabs.Navigator>
+  );
+}
+
+function MainStackScreen() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Home" component={TabsNavigator} />
+      <Drawer.Screen name="Profile" component={ProfileStackScreen} />
+    </Drawer.Navigator>
   );
 }
 

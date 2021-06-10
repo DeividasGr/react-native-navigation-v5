@@ -44,6 +44,7 @@ function HomeScreen({navigation}) {
           navigation.navigate('Details', {title: 'Different Details'})
         }
       />
+      <Button title="Show Drawer" onPress={() => navigation.toggleDrawer()} />
     </View>
   );
 }

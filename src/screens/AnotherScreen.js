@@ -21,6 +21,19 @@ function AnotherScreen({navigation}) {
         title="Go back to first screen in stack"
         onPress={() => navigation.popToTop()}
       />
+      <Button
+        title="Go to Another 2 Screen"
+        onPress={() => navigation.navigate('Another2')}
+      />
+      <Button
+        title="Go to Details"
+        onPress={() =>
+          navigation.navigate('Home', {
+            screen: 'Details',
+            params: {title},
+          })
+        }
+      />
     </View>
   );
 }
