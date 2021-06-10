@@ -43,6 +43,7 @@ function HomeScreen({navigation, route}) {
           })
         }
       />
+      <Button onPress={() => navigation.navigate('Modal')} title="Open Modal" />
     </View>
   );
 }
