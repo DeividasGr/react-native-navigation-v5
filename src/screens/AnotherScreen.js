@@ -1,16 +1,12 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Button, TextInput} from 'react-native';
 
-function AnotherScreen({navigation, route}) {
+function AnotherScreen({navigation}) {
   const [title, setTitle] = useState('');
 
-  const {name, age, id} = route.params;
   return (
     <View>
       <Text>Another Screen</Text>
-      <Text>Name: {name}</Text>
-      <Text>Age: {age}</Text>
-      <Text>Id: {id}</Text>
       <TextInput
         placeholder="Enter Title"
         value={title}
@@ -19,16 +15,6 @@ function AnotherScreen({navigation, route}) {
       <Button
         title="To another screen"
         onPress={() => navigation.push('Another')}
-      />
-      <Button
-        title="Go to Home"
-        onPress={() => {
-          navigation.navigate({
-            name: 'Home',
-            params: {title},
-            merge: true,
-          });
-        }}
       />
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button

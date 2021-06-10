@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import {View, Text, StyleSheet, Button, Image} from 'react-native';
 
-function HomeScreen({navigation, route}) {
-  const [count, setCount] = useState(0);
+function HomeScreen({navigation}) {
+  const [count, setCount] = useState(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -12,22 +12,10 @@ function HomeScreen({navigation, route}) {
     });
   }, [navigation]);
 
-  useEffect(() => {
-    if (route.params?.title) {
-      console.log('received params');
-    }
-  }, [route.params?.title]);
-
   return (
     <View>
       <Text>HomeScreen</Text>
       <Text>{count}</Text>
-      <Button
-        title="To another screen"
-        onPress={() =>
-          navigation.navigate('Another', {name: 'Mike', age: 26, id: 76})
-        }
-      />
       <Button
         title="Update the title"
         onPress={() =>
@@ -44,6 +32,18 @@ function HomeScreen({navigation, route}) {
         }
       />
       <Button onPress={() => navigation.navigate('Modal')} title="Open Modal" />
+      <Button
+        title="Go to Details"
+        onPress={() =>
+          navigation.navigate('Details', {count, title: 'Counter Details'})
+        }
+      />
+      <Button
+        title="Go to Details 2"
+        onPress={() =>
+          navigation.navigate('Details', {title: 'Different Details'})
+        }
+      />
     </View>
   );
 }
